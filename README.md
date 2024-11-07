@@ -8,11 +8,11 @@ My personal animation method is Perlin noise.
 
 There are 3 main elements that have been animated through Perlin noise:
 
-First one is the Grass (Green Cylinders). I use Perlin noise to make it move smoother than other teammates
+- First one is the Grass (Green Cylinders). I use Perlin noise to make it move smoother than other teammates
 
-Second one is the River (Blue Circles). I use perlin noise to update the positions of riverCircles, and make the animation smoother than others.
+- Second one is the River (Blue Circles). I use perlin noise to update the positions of riverCircles, and make the animation smoother than others.
 
-Last one is the Tree. I use Perlin noise to keep changing the size of the tree. The tree will look like it is growing or becoming smaller.
+- Last one is the Tree. I use Perlin noise to keep changing the size of the tree. The tree will look like it is growing or becoming smaller.
 
 ### 3. Inspiration
 ![An image of inspiration 1](Image/Inspiration1.png)
