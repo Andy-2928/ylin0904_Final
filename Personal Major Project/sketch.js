@@ -77,10 +77,12 @@ function draw() {
   // for (let circle of riverCircles) {
   //   circle.display();
   // }
-  // I use perlin noise to update the position of riverCircles, so I can make animation
+  // I ask ChatGPT to use perlin noise to modify the River code above,
+  // because this code is from my teammate and I have no idea how to modify this.
+  // So ChatGPT use perlin noise to update the position of riverCircles, and make the animation
   for (let i = 0; i < riverCircles.length; i++) {
-    riverCircles[i].x += map(noise(frameCount * 0.001 + i), 0, 1, -1, 1);
-    riverCircles[i].y += map(noise(frameCount * 0.001 + i + 1000), 0, 1, -1, 1);
+    riverCircles[i].x += map(noise(frameCount * 0.001 + i), 0, 1, -5, 5);
+    riverCircles[i].y += map(noise(frameCount * 0.001 + i + 1000), 0, 1, -0.5, 0.5);
     riverCircles[i].display();
   }
 }
@@ -104,6 +106,9 @@ function drawGrass() {
       // Randomize the height for the top of each cylinder
       //let topHeight = random(20, 80); 
       //I used the perlin noise to make the animation of the grass element smoother
+      //I learn the technique from this page
+      //https://editor.p5js.org/Brogamer5000/sketches/LUm73Wq2G
+      //It combines the map function and the perlin noise.
       let topHeight = map(noise(x * 0.1, y * 0.1, frameCount * 0.01), 0, 1, 20, 80);
 
       // Draw each cylinder with a random top height
@@ -211,21 +216,26 @@ class Circle {
 }
 
 // Create a function to draw the Tree element
+// Use Perlin noise to adjust the tree branch angle and length
 function drawTree(x, y, angle, number) {
   if (number > 0) {
     // Draw the main branch
-    let length = map(number, 0, 10, height / 50, height / 10); // Map the length to the window height
+    // Dynamically adjust the length of the branch with Perlin noise
+    let length = map(noise(number * 0.2, frameCount * 0.01), 0, 1, height / 80, height / 8);// Map the length to the window height
+    
     let x2 = x + cos(angle) * length;
     let y2 = y + sin(angle) * length;
+    
     stroke(random(100, 255), random(100, 255), random(100, 255));
     line(x, y, x2, y2);
-
+    
     // Call the function to draw circles around every branch
     drawTreeCircles(x2, y2, number);
 
     // Create 2 branches from the previous branch until the number value becomes 0
-    drawTree(x2, y2, angle - random(15, 30), number - 1);
-    drawTree(x2, y2, angle + random(15, 30), number - 1);
+    // Adjust angle of new branches using Perlin noise
+    drawTree(x2, y2, angle - map(noise(number * 0.1), 0, 1, 15, 30), number - 1);
+    drawTree(x2, y2, angle + map(noise(number * 0.1 + 100), 0, 1, 15, 30), number - 1);
   }
 }
 
@@ -233,12 +243,14 @@ function drawTree(x, y, angle, number) {
 function drawTreeCircles(x, y, number) {
   // Draw concentric circles with random colors
   noFill();
+  
+  // Adjust size of circles using Perlin noise
   // I change (number * 1) to (number * 0.8) in order to reduce the numbers of concentric circles
   for (let i = 0; i < number * 0.8; i++) {
     stroke(random(100, 255), random(100, 255), random(100, 255), 150);
-    ellipse(x, y, i * 10, i * 10);
+    ellipse(x, y, i * 10 * noise(i * 0.1), i * 10 * noise(i * 0.1));
   }
-
+  
   // Draw some dots around the circles to present leaves
   for (let i = 0; i < number * 2; i++) {
     let angle = random(360);
