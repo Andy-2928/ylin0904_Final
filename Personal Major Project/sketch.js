@@ -82,7 +82,7 @@ function draw() {
   // So ChatGPT use perlin noise to update the position of riverCircles, and make the animation
   for (let i = 0; i < riverCircles.length; i++) {
     riverCircles[i].x += map(noise(frameCount * 0.001 + i), 0, 1, -5, 5);
-    riverCircles[i].y += map(noise(frameCount * 0.001 + i + 1000), 0, 1, -0.5, 0.5);
+    riverCircles[i].y += map(noise(frameCount * 0.001 + i + 1000), 0, 1, 0.1, 1);
     riverCircles[i].display();
   }
 }
