@@ -66,7 +66,8 @@ function draw() {
   if (ifDrawTree) {
     // I change the last parameter from 9 to 10, make the tree bigger
     drawTree(width / 1.6, height * 0.8, -90, 10); // Start from the location, pointing upwards
-    ifDrawTree = false; // Stop drawing the tree
+    // I remove ifDrawTree = false, so the tree will stay on canvas
+    //ifDrawTree = false; // Stop drawing the tree
   }
 
   // Draw the River element
