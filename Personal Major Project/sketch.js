@@ -47,7 +47,7 @@ function setup() {
 function draw() {
   // Draw the Sky element
   drawGradientSky();
-  drawCelestialBodies();
+  //drawCelestialBodies(); I remove this function because I think it doesn't look good
   drawStars();
 
   // Draw the first Grass element
