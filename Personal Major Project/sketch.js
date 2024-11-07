@@ -71,8 +71,14 @@ function draw() {
   }
 
   // Draw the River element
-  for (let circle of riverCircles) {
-    circle.display();
+  // for (let circle of riverCircles) {
+  //   circle.display();
+  // }
+  // I use perlin noise to update the position of riverCircles, so I can make animation
+  for (let i = 0; i < riverCircles.length; i++) {
+    riverCircles[i].x += map(noise(frameCount * 0.001 + i), 0, 1, -1, 1);
+    riverCircles[i].y += map(noise(frameCount * 0.001 + i + 1000), 0, 1, -1, 1);
+    riverCircles[i].display();
   }
 }
 
