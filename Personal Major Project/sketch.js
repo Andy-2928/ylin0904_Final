@@ -7,7 +7,8 @@ let cylinderCols;
 let riverCircles = [];
 
 // Create a boolean variable to control when the Tree element is drawn
-let ifDrawTree = true;
+// let ifDrawTree = true;
+// I remove this boolean control
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // Set canvas size to window width and height
@@ -62,13 +63,15 @@ function draw() {
   drawGrass();
   pop();
 
+  // I remove ifDrawTree = false, so the tree will stay on canvas
   // Draw the Tree element
-  if (ifDrawTree) {
-    // I change the last parameter from 9 to 10, make the tree bigger
-    drawTree(width / 1.6, height * 0.8, -90, 10); // Start from the location, pointing upwards
-    // I remove ifDrawTree = false, so the tree will stay on canvas
-    //ifDrawTree = false; // Stop drawing the tree
-  }
+  // if (ifDrawTree) {
+  //   drawTree(width / 1.6, height * 0.8, -90, 10); 
+  //   ifDrawTree = false; // Stop drawing the tree
+  // }
+
+  // I change the last parameter from 9 to 10, make the tree bigger
+  drawTree(width / 1.6, height * 0.8, -90, 10); // Start from the location, pointing upwards
 
   // Draw the River element
   // for (let circle of riverCircles) {
