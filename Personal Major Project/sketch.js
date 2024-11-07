@@ -12,7 +12,7 @@ let ifDrawTree = true;
 function setup() {
   createCanvas(windowWidth, windowHeight); // Set canvas size to window width and height
   angleMode(DEGREES); // Use degrees, as opposed to radians, to measure angles
-  noLoop(); // Prevent continuous looping as we are drawing a static artwork
+  // I remove noLoop()
 
   // Calculate cylinder dimensions based on canvas size
   cylinderRows = Math.floor(height / (cylinderRadius * 0.6));
@@ -73,8 +73,6 @@ function draw() {
   for (let circle of riverCircles) {
     circle.display();
   }
-
-
 }
 
 // Create a function for applying responsive design
@@ -94,7 +92,9 @@ function drawGrass() {
       let yPos = (x + y) * cylinderRadius * 0.6;
 
       // Randomize the height for the top of each cylinder
-      let topHeight = random(20, 80);
+      //let topHeight = random(20, 80); 
+      //I used the perlin noise to make the animation of the grass element smoother
+      let topHeight = map(noise(x * 0.1, y * 0.1, frameCount * 0.01), 0, 1, 20, 80);
 
       // Draw each cylinder with a random top height
       drawCylinder(xPos, yPos, topHeight);
